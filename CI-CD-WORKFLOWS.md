@@ -20,12 +20,11 @@ credential handling, or emergency operator procedures.
 python-bootstrap currently separates automation into three workflows:
 
 - `pr.yml` for required pull-request and merge-queue gates
-- `ci.yml` for heavier pre-merge validation on protected branches and merge queue
+- `ci.yml` for cross-platform action compatibility validation
 - `cd.yml` for tagged release publication
 
-This split keeps required PR checks fast enough to use as branch-protection gates while moving
-heavier validation and publication logic into a second stage that can still block protected-branch
-integration when desired.
+This split keeps required PR checks fast enough to use as branch-protection gates while moving the
+larger operating-system and Python-version matrix into CI.
 
 ## PR Gates
 
@@ -39,12 +38,10 @@ Primary role:
 
 Current responsibilities:
 
-- Ruff linting and formatting drift detection
-- Committed `uv.lock` freshness against `pyproject.toml`
-- Unit and integration test execution with coverage
-- Docstring linting
-- Type checking
-- HTML docs build
+- GitFlow pull-request target validation
+- Root action metadata presence check
+- YAML syntax validation for GitHub configuration files
+- Fast local-action smoke test on Ubuntu with the default smoke-test Python version
 
 This workflow runs on pull requests into protected branches and also on pushes to the working and
 release-oriented branches that feed later validation.
@@ -57,13 +54,12 @@ Workflow name: `CI`
 
 Primary role:
 
-- Run heavier pre-merge validation for protected-branch pull requests and merge queue entries
+- Run cross-platform compatibility validation for the repository action
 
 Current responsibilities:
 
-- Non-PR docs builders such as `epub` and `linkcheck`
-- macOS and Windows install smoke coverage
-- Distribution build, verification, and wheel smoke testing
+- Execute the checked-out action with a matrix of GitHub-hosted runner operating systems
+- Verify that the requested Python versions become active after the action runs
 
 This workflow runs on pull requests into `main` and `develop`, on `merge_group` for those same
 protected branches, and manually via `workflow_dispatch`.
@@ -76,17 +72,12 @@ Workflow name: `Release`
 
 Primary role:
 
-- build, validate, and publish tagged releases
+- Validate and publish tagged GitHub Action releases
 
 Current responsibilities:
 
-- Build source and wheel distributions with `python -m build`
-- Audit release artifacts and validate them with `twine check`
-- Smoke-test supported installer paths against the built wheel
-- Smoke-test packaged behavior against the built wheel
-- Build release-time documentation targets
-- Publish a GitHub Release
-- Publish to PyPI through trusted publishing
+- Run the tagged action through the same cross-platform compatibility matrix used by CI
+- Publish a GitHub Release with generated release notes
 
 This workflow is tag-driven. It runs when a `v*.*.*` tag is pushed.
 
@@ -95,8 +86,8 @@ This workflow is tag-driven. It runs when a `v*.*.*` tag is pushed.
 The workflows intentionally do not form a single linear chain.
 
 - `PR Gates` is the required branch-protection workflow.
-- `CI` runs alongside `PR Gates` when protected-branch pull requests or merge-queue entries need
-  the heavier validation set.
+- `CI` runs alongside `PR Gates` when protected-branch pull requests or merge-queue entries need the
+  heavier action compatibility matrix.
 - `Release` does not run because `CI` succeeded; it runs only when a release tag is pushed.
 
 That means a successful `ci.yml` run is a confidence signal, not a publication trigger by itself.
@@ -104,6 +95,6 @@ That means a successful `ci.yml` run is a confidence signal, not a publication t
 ## Required Checks
 
 Protected branches must require checks from `PR Gates`. They may also require checks from `CI` when
-you want the heavier docs, smoke-install, and distribution-validation workflow to block merges. The
-exact protected-branch settings and GitHub configuration details are maintained separately in
+you want the full operating-system and Python-version matrix to block merges. The exact
+protected-branch settings and GitHub configuration details are maintained separately in
 `.github/BRANCH-PROTECTION.md`.
