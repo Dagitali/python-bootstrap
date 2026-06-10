@@ -40,6 +40,9 @@ steps:
 | `pip-install` | No | `''` | Arguments passed to `python -m pip install`. Empty skips dependency installation. |
 | `upgrade-pip` | No | `'true'` | Upgrade `pip` to the latest available version before dependency installation. Use `'false'` to skip. |
 
+Treat `pip-install` as trusted workflow configuration. Do not build it from untrusted issue, pull
+request, or user-supplied text.
+
 ## Outputs
 
 This action does not define outputs. It changes the calling job environment by making the requested
