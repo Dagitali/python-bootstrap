@@ -91,9 +91,9 @@ security, legal, or clearly broken accidental surfaces that were never intended 
 
 Public releases are expected to produce:
 
-- a Git tag for the released version
-- a GitHub Release for announcement and release-note publication
-- PyPI artifacts for installation
+- A Git tag for the released version
+- A GitHub Release for announcement and release-note publication
+- The tagged repository source used by downstream workflows with `uses:`
 
 Tagged release automation is handled by `.github/workflows/cd.yml`.
 
@@ -106,7 +106,7 @@ Release notes should summarize:
 - User-visible features or fixes
 - Deprecations
 - Breaking changes
-- Notable packaging, compatibility, or workflow changes when they affect users or contributors
+- Notable compatibility or workflow changes when they affect users or contributors
 
 For release-readiness execution details, consult `RELEASE-CHECKLIST.md`. For public CI/CD workflow
 roles and triggers, consult `CI-CD-WORKFLOWS.md`.
