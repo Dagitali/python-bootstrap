@@ -106,12 +106,24 @@ jobs:
             exit 1
           fi
 
-          if [[ "$base_ref" == 'develop' && "$head_ref" == feature/* ]]; then
-            echo 'Feature branch PR target is valid for develop.'
-            exit 0
+          if [[ "$base_ref" == 'develop' ]]; then
+            if [[ "$head_ref" == feature/* ||
+                  "$head_ref" == bugfix/* ||
+                  "$head_ref" == chore/* ||
+                  "$head_ref" == ci/* ||
+                  "$head_ref" == docs/* ]]; then
+              echo 'Working branch PR target is valid for develop.'
+              exit 0
+            fi
+
+            echo 'Only feature/*, bugfix/*, chore/*, ci/*, and docs/* branches may target develop.'
+            exit 1
           fi
 
-          echo 'No GitFlow target-branch restriction matched for this PR target.'
+          if [[ "$base_ref" != 'main' && "$base_ref" != 'develop' ]]; then
+            echo 'This workflow only enforces PR targets for main and develop.'
+            exit 0
+          fi
 
   metadata:
     name: Validate repository metadata
@@ -166,4 +178,35 @@ jobs:
           print(f"actual={actual}")
           if not actual.startswith(expected + "."):
               sys.exit(f"Expected Python {expected}.x, got {actual}")
+          PY
+
+  optional-inputs:
+    name: Smoke test optional inputs
+    runs-on: ubuntu-latest
+    needs: [metadata]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10  # Pinned v6.0.3
+      - name: Run local action with pip options
+        uses: ./
+        with:
+          python-version: ${{ env.SMOKE_PYTHON_VERSION }}
+          pip-version: '25.0'
+          upgrade-pip: 'false'
+          pip-install: 'packaging==25.0'
+      - name: Verify optional input behavior
+        shell: bash
+        run: |
+          python - <<'PY'
+          import importlib.metadata
+
+          pip_version = importlib.metadata.version("pip")
+          version = importlib.metadata.version("packaging")
+          print(f"pip={pip_version}")
+          print(f"packaging={version}")
+          if pip_version != "25.0":
+              raise SystemExit(f"Expected pip 25.0, got {pip_version}")
+          if version != "25.0":
+              raise SystemExit(f"Expected packaging 25.0, got {version}")
           PY
