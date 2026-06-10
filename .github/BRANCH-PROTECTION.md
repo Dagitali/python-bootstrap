@@ -93,17 +93,33 @@ job names as the minimum required checks:
 In the current CI workflow, those advisory categories resolve to expanded matrix job names like:
 
 - `Action on ubuntu-latest / Python 3.11`
+- `Action on ubuntu-latest / Python 3.12`
+- `Action on ubuntu-latest / Python 3.13`
+- `Action on ubuntu-latest / Python 3.14`
+- `Action on macos-latest / Python 3.11`
+- `Action on macos-latest / Python 3.12`
 - `Action on macos-latest / Python 3.13`
+- `Action on macos-latest / Python 3.14`
+- `Action on windows-latest / Python 3.11`
+- `Action on windows-latest / Python 3.12`
 - `Action on windows-latest / Python 3.13`
+- `Action on windows-latest / Python 3.14`
 
 If you want the heavier pre-merge workflow to block normal pull-request merges into `main` and
-`develop`, the natural next checks to add are:
+`develop`, add the full emitted CI matrix:
 
 - `Action on ubuntu-latest / Python 3.11`
 - `Action on ubuntu-latest / Python 3.12`
 - `Action on ubuntu-latest / Python 3.13`
+- `Action on ubuntu-latest / Python 3.14`
+- `Action on macos-latest / Python 3.11`
+- `Action on macos-latest / Python 3.12`
 - `Action on macos-latest / Python 3.13`
+- `Action on macos-latest / Python 3.14`
+- `Action on windows-latest / Python 3.11`
+- `Action on windows-latest / Python 3.12`
 - `Action on windows-latest / Python 3.13`
+- `Action on windows-latest / Python 3.14`
 
 That keeps the staged PR-gates and heavier-CI layout intact without collapsing everything back into
 a single workflow. Because `ci.yml` also runs on `merge_group`, those heavier checks can be made
@@ -169,8 +185,8 @@ Branch-specific additions:
 Recommended baseline:
 
 - Require the full pull-request baseline from `pr.yml`.
-- Consider also requiring the heavier `ci.yml` jobs on `develop` if you want the extended docs,
-  smoke matrix to block feature integration into `develop`.
+- Consider also requiring the heavier `ci.yml` jobs on `develop` if you want the extended docs or
+  smoke test matrix to block feature integration into `develop`.
 
 Optional hardening:
 
@@ -222,8 +238,15 @@ In GitHub:
   - `Action on ubuntu-latest / Python 3.11`
   - `Action on ubuntu-latest / Python 3.12`
   - `Action on ubuntu-latest / Python 3.13`
+  - `Action on ubuntu-latest / Python 3.14`
+  - `Action on macos-latest / Python 3.11`
+  - `Action on macos-latest / Python 3.12`
   - `Action on macos-latest / Python 3.13`
+  - `Action on macos-latest / Python 3.14`
+  - `Action on windows-latest / Python 3.11`
+  - `Action on windows-latest / Python 3.12`
   - `Action on windows-latest / Python 3.13`
+  - `Action on windows-latest / Python 3.14`
 7. Save the `main` branch protection rule.
 8. Repeat the same status-check set for the `develop` branch protection rule unless you
   intentionally want a different protected-branch policy.
@@ -244,7 +267,7 @@ With that configuration in place:
 
 - GitHub required checks are tied to the exact job names emitted by the PR-gates workflow after
   matrix expansion. In this repository, that means branch protection should reference concrete names
-  such as `Guard PR target branch` and `Lint on Python 3.13`, not the template strings shown in the
+  such as `Guard PR target branch` and `Action on ubuntu-latest / Python 3.14`, not the template strings shown in the
   YAML.
 - Treat version-specific and OS-specific names in this document as current examples, not permanent
   policy. When the support matrix changes, refresh the exact examples here and in the GitHub branch
