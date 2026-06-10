@@ -43,6 +43,52 @@ steps:
 Treat `pip-install` as trusted workflow configuration. Do not build it from untrusted issue, pull
 request, or user-supplied text.
 
+## Examples
+
+Minimal Python setup:
+
+```yaml
+- uses: Dagitali/python-bootstrap@v1
+  with:
+    python-version: '3.13'
+```
+
+Pin a specific `pip` version:
+
+```yaml
+- uses: Dagitali/python-bootstrap@v1
+  with:
+    python-version: '3.13'
+    pip-version: '25.0.1'
+```
+
+Install project dependencies:
+
+```yaml
+- uses: Dagitali/python-bootstrap@v1
+  with:
+    python-version: '3.13'
+    pip-install: '-r requirements.txt'
+```
+
+Install the current package in editable mode with extras:
+
+```yaml
+- uses: Dagitali/python-bootstrap@v1
+  with:
+    python-version: '3.13'
+    pip-install: '-e .[dev,test]'
+```
+
+Skip the default `pip` upgrade:
+
+```yaml
+- uses: Dagitali/python-bootstrap@v1
+  with:
+    python-version: '3.13'
+    upgrade-pip: 'false'
+```
+
 ## Outputs
 
 This action does not define outputs. It changes the calling job environment by making the requested
@@ -63,3 +109,9 @@ only the permissions needed by their own jobs.
 
 Prefer a release tag such as `Dagitali/python-bootstrap@v1` or an exact version tag for normal use.
 Pin to a full commit SHA when your workflow requires maximum supply-chain immutability.
+
+## License
+
+Copyright © 2026 Dagitali LLC. All rights reserved.
+
+See [LICENSE](LICENSE) for details.
