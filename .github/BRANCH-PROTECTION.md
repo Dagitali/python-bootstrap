@@ -60,6 +60,7 @@ Use this baseline for protected-branch merge gates. It covers the checks that ru
 - Root action metadata presence
 - YAML syntax validation for GitHub configuration
 - Fast local-action smoke test on Ubuntu
+- Optional input smoke test on Ubuntu
 
 These categories define the minimum merge gate for protected branches.
 
@@ -70,6 +71,7 @@ In the current PR-gates workflow, the baseline above resolves to:
 - `Guard PR target branch`
 - `Validate repository metadata`
 - `Smoke test action`
+- `Smoke test optional inputs`
 
 Additional CI jobs are still useful, and they can be made required for normal pull-request merges
 into `main` and `develop` if you want the heavier pre-merge workflow to block those merges.
@@ -82,11 +84,13 @@ job names as the minimum required checks:
 - `Guard PR target branch`
 - `Validate repository metadata`
 - `Smoke test action`
+- `Smoke test optional inputs`
 
 ### Advisory Categories
 
 - Cross-platform action smoke tests
 - Additional supported Python-version checks
+- Optional input checks on supported runner operating systems
 
 ### Current Advisory Examples
 
@@ -104,6 +108,9 @@ In the current CI workflow, those advisory categories resolve to expanded matrix
 - `Action on windows-latest / Python 3.12`
 - `Action on windows-latest / Python 3.13`
 - `Action on windows-latest / Python 3.14`
+- `Optional inputs on ubuntu-latest`
+- `Optional inputs on macos-latest`
+- `Optional inputs on windows-latest`
 
 If you want the heavier pre-merge workflow to block normal pull-request merges into `main` and
 `develop`, add the full emitted CI matrix:
@@ -120,6 +127,9 @@ If you want the heavier pre-merge workflow to block normal pull-request merges i
 - `Action on windows-latest / Python 3.12`
 - `Action on windows-latest / Python 3.13`
 - `Action on windows-latest / Python 3.14`
+- `Optional inputs on ubuntu-latest`
+- `Optional inputs on macos-latest`
+- `Optional inputs on windows-latest`
 
 That keeps the staged PR-gates and heavier-CI layout intact without collapsing everything back into
 a single workflow. Because `ci.yml` also runs on `merge_group`, those heavier checks can be made
@@ -233,6 +243,7 @@ In GitHub:
   - `Guard PR target branch`
   - `Validate repository metadata`
   - `Smoke test action`
+  - `Smoke test optional inputs`
 6. If you want the heavier pre-merge `ci.yml` workflow to block ordinary PR merges into `main` and
    `develop`, also add these checks:
   - `Action on ubuntu-latest / Python 3.11`
@@ -247,6 +258,9 @@ In GitHub:
   - `Action on windows-latest / Python 3.12`
   - `Action on windows-latest / Python 3.13`
   - `Action on windows-latest / Python 3.14`
+  - `Optional inputs on ubuntu-latest`
+  - `Optional inputs on macos-latest`
+  - `Optional inputs on windows-latest`
 7. Save the `main` branch protection rule.
 8. Repeat the same status-check set for the `develop` branch protection rule unless you
   intentionally want a different protected-branch policy.
