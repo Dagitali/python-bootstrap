@@ -95,8 +95,8 @@ That file is intended for project-local operating procedures, such as:
 - Syncing `main` back into `develop`
 - Tagging and tag-triggered CD behavior
 
-It lives outside `docs/source/` on purpose so it is version-controlled with the repository without
-being published to Read the Docs.
+It lives under `.github/` because it is repository operations guidance rather than user-facing
+action documentation.
 
 Private operator procedures, credentials, incident-response steps, and recovery playbooks should
 live outside the repository.
