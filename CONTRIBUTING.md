@@ -35,10 +35,10 @@ reproducible bug reports are often as valuable as small code changes.
 
 1. Do not commit or push directly to the protected `main` or `develop` branches. Work from a topic
    branch and open a pull request instead.
-2. Update the [README] with details of changes to the interface. This includes new environment
-   variables, exposed ports, useful file locations and container parameters.
-3. For release-affecting changes (packaging, CI, published docs, install snippets, or stable public
-   surface decisions), consult [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md).
+2. Update the [README] with details of changes to the action interface. This includes new inputs,
+   outputs, runner environment behavior, examples, or version-support expectations.
+3. For release-affecting changes (CI, release automation, usage snippets, or stable public surface
+   decisions), consult [.github/MAINTAINER-RUNBOOKS.md](.github/MAINTAINER-RUNBOOKS.md).
 4. For the protected-branch protection settings, required CI checks, and the exact GitHub
    configuration needed to disable direct pushes, consult
    [.github/BRANCH-PROTECTION.md](.github/BRANCH-PROTECTION.md).
