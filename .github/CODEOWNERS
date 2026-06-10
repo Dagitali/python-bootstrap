@@ -1,8 +1,9 @@
 # Repository automation and governance
 /.github/                         @djrlj694
 
-# Release and packaging surfaces
-/RELEASE-CHECKLIST.md             @djrlj694
+# Release and automation surfaces
+/CI-CD-WORKFLOWS.md               @djrlj694
+/RELEASE-POLICY.md                @djrlj694
 
 # Security and community health
 /SECURITY.md                      @djrlj694
