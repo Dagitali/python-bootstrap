@@ -46,7 +46,7 @@ body:
     id: proposal
     attributes:
       label: Proposed solution
-      description: Describe the behavior, CLI/API shape, or docs change you want.
+      description: Describe the behavior, input, output, or docs change you want.
       placeholder: Describe the requested feature.
     validations:
       required: true
@@ -58,21 +58,21 @@ body:
   - type: textarea
     id: examples
     attributes:
-      label: Example config or command
-      description: Include a pipeline snippet, CLI call, or API example if relevant.
+      label: Example GitHub Actions workflow snippet
+      description: Include a workflow snippet or action configuration if relevant.
       render: yaml
   - type: dropdown
     id: surface
     attributes:
       label: Affected surface
       options:
-        - CLI
-        - Python API
-        - File handlers
-        - Database support
-        - API client
+        - GitHub Actions action inputs
+        - GitHub Actions action outputs
+        - Runner environment
+        - Python version support
+        - Operating system support
         - Documentation
-        - CI or packaging
+        - CI or release automation
         - Other
     validations:
       required: true
