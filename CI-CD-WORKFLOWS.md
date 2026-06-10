@@ -42,6 +42,7 @@ Current responsibilities:
 - Root action metadata presence check
 - YAML syntax validation for GitHub configuration files
 - Fast local-action smoke test on Ubuntu with the default smoke-test Python version
+- Optional input smoke test for `pip-version`, `upgrade-pip`, and `pip-install`
 
 This workflow runs on pull requests into protected branches and also on pushes to the working and
 release-oriented branches that feed later validation.
@@ -60,6 +61,7 @@ Current responsibilities:
 
 - Execute the checked-out action with a matrix of GitHub-hosted runner operating systems
 - Verify that the requested Python versions become active after the action runs
+- Smoke-test optional pip and dependency installation inputs on each supported operating system
 
 This workflow runs on pull requests into `main` and `develop`, on `merge_group` for those same
 protected branches, and manually via `workflow_dispatch`.
@@ -77,6 +79,7 @@ Primary role:
 Current responsibilities:
 
 - Run the tagged action through the same cross-platform compatibility matrix used by CI
+- Validate optional pip and dependency installation inputs before release publication
 - Publish a GitHub Release with generated release notes
 
 This workflow is tag-driven. It runs when a `v*.*.*` tag is pushed.
