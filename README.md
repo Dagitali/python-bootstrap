@@ -1,7 +1,16 @@
 # python-bootstrap
 
-`python-bootstrap` is a composite GitHub Action that sets up a requested Python runtime and
+`python-bootstrap` is a composite GitHub Actions action that sets up a requested Python runtime and
 optionally normalizes `pip` before installing dependencies for the calling job.
+
+- [Usage](#usage)
+- [Inputs](#inputs)
+- [Examples](#examples)
+- [Outputs](#outputs)
+- [Supported Matrix](#supported-matrix)
+- [Permissions](#permissions)
+- [Version Pinning](#version-pinning)
+- [License](#license)
 
 ## Usage
 
