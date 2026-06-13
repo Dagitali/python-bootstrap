@@ -1,8 +1,8 @@
 # References
 
 The following is a list of sources that were helpful or inspirational when learning new topics,
-troubleshooting bugs, authoring documentation, etc.  while developing or maintaining
-[this project](README.md).
+troubleshooting bugs, authoring documentation, etc. while developing or maintaining [this
+project](README.md).
 
 - [Markup Languages: Markdown](#markup-languages-markdown)
 - [Markup Languages: YAML](#markup-languages-yaml)

@@ -53,8 +53,8 @@ latest active minor line.
 
 - **Questions & Usage**: Please use [GitHub Discussions][discussions] for general questions, usage
   help, and best practices.
-- **Docs Feedback & Examples**: Please use [GitHub Discussions][discussions] for documentation
-  gaps, unclear sections, and example-sharing.
+- **Docs Feedback & Examples**: Please use [GitHub Discussions][discussions] for documentation gaps,
+  unclear sections, and example-sharing.
 - **Bugs & Feature Requests**: Open an issue in the [GitHub Issues][issues] tracker.
 - **Security Issues**: See [SECURITY.md](SECURITY.md) for responsible disclosure.
 - **Documentation**: See the [README](README.md) and [docs/](docs/) directory for guides and
@@ -91,8 +91,8 @@ Internal, defunct, placeholder, or undocumented modules are excluded from this d
 
 ## Support the Project
 
-If python-bootstrap is useful in your work, you can support its ongoing maintenance through the repository
-sponsor button.
+If python-bootstrap is useful in your work, you can support its ongoing maintenance through the
+repository sponsor button.
 
 - GitHub Sponsors: https://github.com/sponsors/Dagitali
 - Buy Me a Coffee: https://buymeacoffee.com/djrlj694

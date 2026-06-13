@@ -27,8 +27,8 @@ These protections exist to enforce three repository policies:
 - No direct pushes to `develop`
 - No merge into either protected branch unless the required CI checks pass
 
-Local hooks in `.pre-commit-config.yaml` complement this policy, but GitHub branch protection is
-the authoritative enforcement layer in the current repository configuration.
+Local hooks in `.pre-commit-config.yaml` complement this policy, but GitHub branch protection is the
+authoritative enforcement layer in the current repository configuration.
 
 ## Recommended Required Checks
 
@@ -145,8 +145,8 @@ Apply this baseline to both protected branches:
 - Require status checks to pass before merging
 - Require branches to be up to date before merging
 - Add the required checks listed above
-- If merge queue is enabled, keep the `merge_group` trigger in PR Gates so the same checks run for queued
-  merges
+- If merge queue is enabled, keep the `merge_group` trigger in PR Gates so the same checks run for
+  queued merges
 
 In GitHub, these controls are typically split across PR rules, status check rules, and branch
 protections.
@@ -263,7 +263,7 @@ In GitHub:
   - `Optional inputs on windows-latest`
 7. Save the `main` branch protection rule.
 8. Repeat the same status-check set for the `develop` branch protection rule unless you
-  intentionally want a different protected-branch policy.
+   intentionally want a different protected-branch policy.
 
 If merge queue is enabled, keep the heavier `ci.yml` checks aligned with the same required-check
 policy you use for normal pull requests into `main` and `develop`.
@@ -272,8 +272,7 @@ With that configuration in place:
 
 - Contributors push to feature, bugfix, hotfix, release, chore, ci, or docs branches
 - Feature branches cannot merge into `main` while `Guard PR target branch` is required
-- Pull requests into `main` and `develop` carry both the PR-gates results and the heavier CI
-  results
+- Pull requests into `main` and `develop` carry both the PR-gates results and the heavier CI results
 - `main` and `develop` cannot be updated directly by ordinary pushes
 - Merges remain blocked until the required checks pass
 
@@ -281,8 +280,8 @@ With that configuration in place:
 
 - GitHub required checks are tied to the exact job names emitted by the PR-gates workflow after
   matrix expansion. In this repository, that means branch protection should reference concrete names
-  such as `Guard PR target branch` and `Action on ubuntu-latest / Python 3.14`, not the template strings shown in the
-  YAML.
+  such as `Guard PR target branch` and `Action on ubuntu-latest / Python 3.14`, not the template
+  strings shown in the YAML.
 - Treat version-specific and OS-specific names in this document as current examples, not permanent
   policy. When the support matrix changes, refresh the exact examples here and in the GitHub branch
   protection UI to match the emitted checks.

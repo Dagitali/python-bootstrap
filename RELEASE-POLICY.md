@@ -1,7 +1,7 @@
 # Release Policy And Versioning
 
-This document describes the public release policy for python-bootstrap, including versioning expectations,
-release channels, deprecation posture, and release-note handling.
+This document describes the public release policy for python-bootstrap, including versioning
+expectations, release channels, deprecation posture, and release-note handling.
 
 - [Scope](#scope)
 - [Supported Release Line](#supported-release-line)
@@ -16,8 +16,8 @@ release channels, deprecation posture, and release-note handling.
 ## Scope
 
 This file is a public policy document. It explains what maintainers and contributors should expect
-from python-bootstrap releases, but it does not contain private operator steps, credentials, or incident
-response procedures.
+from python-bootstrap releases, but it does not contain private operator steps, credentials, or
+incident response procedures.
 
 ## Supported Release Line
 
@@ -44,8 +44,8 @@ Patch releases are appropriate for changes such as:
 
 - Bug fixes that preserve the documented public contract
 - CI/CD or release-automation fixes that do not change the supported interface
-- documentation corrections that align public docs with actual stable behavior
-- dependency or compatibility fixes that preserve supported usage
+- Documentation corrections that align public docs with actual stable behavior
+- Dependency or compatibility fixes that preserve supported usage
 
 Patch releases should avoid widening or narrowing the stable surface unless the change is purely a
 documentation correction for behavior that was already intentionally supported.
@@ -58,12 +58,13 @@ Minor releases are appropriate for changes such as:
 - Additional supported runner operating systems or Python versions
 - Additive configuration capabilities that remain backward compatible
 
-Minor releases may expand the public surface, but they should not silently break existing
-documented CI/CD workflows.
+Minor releases may expand the public surface, but they should not silently break existing documented
+CI/CD workflows.
 
 ## Major Releases
 
-Major releases are appropriate when python-bootstrap intentionally breaks the documented public contract.
+Major releases are appropriate when python-bootstrap intentionally breaks the documented public
+contract.
 
 Examples include:
 

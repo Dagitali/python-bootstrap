@@ -118,8 +118,8 @@ of classes of individuals.
 This Code of Conduct is adapted from the [Contributor Covenant], version [2.0], available at
 <https://www.contributor-covenant.org/version/2/0/code_of_conduct.html>.
 
-Community Impact Guidelines were inspired by [Mozilla’s code of conduct enforcement
-ladder][Mozilla CoC]
+Community Impact Guidelines were inspired by [Mozilla’s code of conduct enforcement ladder][Mozilla
+CoC]
 
 For answers to common questions about this code of conduct, see
 <https://www.contributor-covenant.org/faq>.  Translations are available at
