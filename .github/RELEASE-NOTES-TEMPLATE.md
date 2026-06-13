@@ -37,8 +37,8 @@ Releases is the canonical release-history surface for the project.
 
 - Call out important docs improvements, CI/release automation changes, or contributor-facing
   maintenance work.
-- For release-smoke changes, state which runner operating systems and Python
-  versions were validated for the tagged action.
+- For release-smoke changes, state which runner operating systems and Python versions were validated
+  for the tagged action.
 
 ## Upgrade Notes
 
@@ -49,10 +49,13 @@ Releases is the canonical release-history surface for the project.
 ## Support Boundary
 
 - Re-state any release-specific support or stability caveats when needed.
-- For python-bootstrap `v1.x`, keep the message aligned with the README and SUPPORT policy.
+- Keep the message aligned with the [README][README] and [SUPPORT][SUPPORT] policy.
 
 ## Notes for Maintainers
 
 - Cross-check the generated GitHub release notes against this template.
 - Make sure breaking changes and deprecations are never left only in the auto- generated PR summary.
-- Keep terminology consistent with the documented stable surface in the README.
+- Keep terminology consistent with the documented stable surface in the [README][README].
+
+[README]: ../README.md
+[SUPPORT]: ../SUPPORT.md

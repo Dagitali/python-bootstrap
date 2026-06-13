@@ -1,9 +1,8 @@
 # Contributing Guidelines
 
 Version-controllable contributions toward improving [this project][README] (its source code,
-documentation, etc.) are welcome via GitHub's [pull request] process.  By submitting a merge
-request, you acknowledge and agree to licensing your contribution to
-[Dagitali LLC][owner].
+documentation, etc.) are welcome via GitHub's [pull request] process. By submitting a merge request,
+you acknowledge and agree to licensing your contribution to [Dagitali LLC][owner].
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.
@@ -17,8 +16,8 @@ email, or any other method with the owners of this repository before making a ch
 
 ## Ways to Contribute
 
-Not every valuable contribution needs to be a pull request. python-bootstrap also benefits from codeless
-contributions such as:
+Not every valuable contribution needs to be a pull request. python-bootstrap also benefits from
+codeless contributions such as:
 
 - Sponsorship through [GitHub Sponsors] or [Buy Me a Coffee][Buy Me a Coffee]
 - Documentation corrections and clarity improvements
@@ -51,14 +50,14 @@ reproducible bug reports are often as valuable as small code changes.
 
 ## Protected-Branch GitFlow Workflow
 
-python-bootstrap uses GitFlow-style branch roles, but protected branches change how those branches should be
-finished.
+python-bootstrap uses GitFlow-style branch roles, but protected branches change how those branches
+should be finished.
 
 - Treat `feature/*`, `release/*`, and `hotfix/*` as working branches.
 - Treat `develop` and `main` as GitHub-managed integration branches.
-- Do not rely on `git flow feature finish` or `git flow release finish` as the authoritative way
-  to update protected branches. Those commands create local merges, but protected branches and
-  required checks are enforced in GitHub.
+- Do not rely on `git flow feature finish` or `git flow release finish` as the authoritative way to
+  update protected branches. Those commands create local merges, but protected branches and required
+  checks are enforced in GitHub.
 
 Preferred flow:
 
@@ -103,7 +102,7 @@ live outside the repository.
 
 ## Code of Conduct
 
-All contributors are expected to honor and adhere to our [Code of Conduct] policy.  As such, please
+All contributors are expected to honor and adhere to our [Code of Conduct] policy. As such, please
 do the following:
 
 1. Read it before making any contributions;
