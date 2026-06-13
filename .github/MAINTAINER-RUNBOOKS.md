@@ -3,8 +3,8 @@
 Maintainer-facing runbooks for working with protected branches, GitHub pull requests (PRs), and
 tag-triggered releases.
 
-This file is intentionally kept under `.github/` because it supports repository
-operations rather than end-user action usage.
+This file is intentionally kept under `.github/` because it supports repository operations rather
+than end-user action usage.
 
 - [Operating Model](#operating-model)
 - [Feature Branch Runbook](#feature-branch-runbook)
@@ -43,27 +43,26 @@ outside the public repository.
 
 Use for normal development work.
 
-1. Create a local feature branch from your local `develop` branch.
-   Example: `git flow feature start my-change`
+1. Create a local feature branch from your local `develop` branch. Example: `git flow feature start
+   my-change`
 2. Commit your changes locally on that feature branch.
-3. Push the feature branch to the remote GitHub repository.
-   Example: `git push -u origin feature/my-change`
+3. Push the feature branch to the remote GitHub repository. Example: `git push -u origin
+   feature/my-change`
 4. Open a PR from the remote `feature/*` branch into the remote `develop` branch. The PR-gates
    workflow rejects `feature/*` pull requests that target `main`.
 5. Let `.github/workflows/pr.yml` and `.github/workflows/ci.yml` run on GitHub. For feature work,
    the heavier `ci.yml` checks run because the PR targets `develop`.
 6. Merge the PR in GitHub once both workflows report the required checks for your target branch.
 7. Delete the remote feature branch on GitHub after merge if it is no longer needed, and clean up
-   your local branch when convenient.
-   Preferred local cleanup: delete the local feature branch manually after updating your local
-   branch state.
+   your local branch when convenient. Preferred local cleanup: delete the local feature branch
+   manually after updating your local branch state.
 
 ## Release Branch Runbook
 
 Use for release stabilization and promotion.
 
-1. Create a local `release/<version>` branch from your local `develop` branch.
-   Example: `git flow release start 1.13.6`
+1. Create a local `release/<version>` branch from your local `develop` branch. Example: `git flow
+   release start 1.13.6`
 2. Commit release-targeted stabilization changes locally on that release branch.
 3. Push the release branch to the remote GitHub repository.
    Example: `git push -u origin release/1.13.6`
@@ -71,37 +70,35 @@ Use for release stabilization and promotion.
    reserves `main` for `release/*` and `hotfix/*` pull requests.
 5. Merge the PR on GitHub after both `.github/workflows/pr.yml` and `.github/workflows/ci.yml`
    report the required checks for `main`.
-6. Fetch the newly merged remote `main` commit into your local repository.
-   Example: `git fetch origin main`
+6. Fetch the newly merged remote `main` commit into your local repository. Example: `git fetch
+   origin main`
 7. Create or move the annotated release tag locally so it points at that fetched `main` commit.
    Example: `git tag -a v1.13.6 origin/main -m "Release v1.13.6"`
-8. Push the annotated release tag to GitHub.
-   Example: `git push origin v1.13.6`
+8. Push the annotated release tag to GitHub. Example: `git push origin v1.13.6`
 9. Confirm `.github/workflows/cd.yml` runs on GitHub from that pushed tag.
-10. Sync the resulting remote `main` state back into `develop` explicitly.
-    See [Sync Main Back To Develop](#sync-main-back-to-develop).
+10. Sync the resulting remote `main` state back into `develop` explicitly. See [Sync Main Back To
+    Develop](#sync-main-back-to-develop).
 
 ## Hotfix Branch Runbook
 
 Use for production fixes that must land on `main` first.
 
-1. Create a local `hotfix/<version>` branch from your local `main` branch.
-   Example: `git flow hotfix start 1.13.7`
+1. Create a local `hotfix/<version>` branch from your local `main` branch. Example: `git flow hotfix
+   start 1.13.7`
 2. Apply and validate the fix locally on that hotfix branch.
-3. Push the hotfix branch to the remote GitHub repository.
-   Example: `git push -u origin hotfix/1.13.7`
+3. Push the hotfix branch to the remote GitHub repository. Example: `git push -u origin
+   hotfix/1.13.7`
 4. Open a PR from the remote `hotfix/*` branch into the remote `main` branch. The PR-gates workflow
    reserves `main` for `release/*` and `hotfix/*` pull requests.
 5. Merge the PR in GitHub after both `.github/workflows/pr.yml` and `.github/workflows/ci.yml`
    report the required checks for `main`.
-6. Fetch the newly merged remote `main` commit into your local repository.
-   Example: `git fetch origin main`
+6. Fetch the newly merged remote `main` commit into your local repository. Example: `git fetch
+   origin main`
 7. Create or move the annotated hotfix tag locally so it points at that fetched `main` commit.
    Example: `git tag -a v1.13.7 origin/main -m "Release v1.13.7"`
-8. Push the annotated hotfix tag to GitHub.
-   Example: `git push origin v1.13.7`
-9. Sync the resulting remote `main` state back into `develop` explicitly.
-   See [Sync Main Back To Develop](#sync-main-back-to-develop).
+8. Push the annotated hotfix tag to GitHub. Example: `git push origin v1.13.7`
+9. Sync the resulting remote `main` state back into `develop` explicitly. See [Sync Main Back To
+   Develop](#sync-main-back-to-develop).
 
 ## Sync Main Back To Develop
 
@@ -110,17 +107,15 @@ protected branches are already aligned.
 
 Preferred sequence:
 
-1. Fetch or pull the latest remote `main` and `develop` state into your local repository.
-   Example: `git fetch origin main develop`
+1. Fetch or pull the latest remote `main` and `develop` state into your local repository. Example:
+   `git fetch origin main develop`
 2. Create a temporary local sync branch from your updated local `develop` branch if you want a
-   reviewable sync PR.
-   Example: `git switch develop && git pull --ff-only origin develop && git switch -c sync/main-into-develop`
+   reviewable sync PR. Example: `git switch develop && git pull --ff-only origin develop && git
+   switch -c sync/main-into-develop`
 3. Merge your updated local tracking copy of `main` into that local sync branch or directly into
-   your local `develop` branch.
-   Example: `git merge --no-ff origin/main`
+   your local `develop` branch. Example: `git merge --no-ff origin/main`
 4. If branch protection or review policy requires GitHub review, push the sync branch to GitHub and
-   open a PR into the remote `develop` branch.
-   Example: `git push -u origin sync/main-into-develop`
+   open a PR into the remote `develop` branch. Example: `git push -u origin sync/main-into-develop`
 5. Merge on GitHub once the required checks for `develop` pass, including `.github/workflows/ci.yml`
    if that heavier pre-merge workflow is part of your `develop` branch-protection rule, or push the
    updated local `develop` branch only if your branch protection model intentionally allows that
